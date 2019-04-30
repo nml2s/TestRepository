@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetCountries</title>
+    <script src="~/Scripts/jquery-3.0.0.js"></script>   
+</head>
+<body>
+    <div> 
+        @*<select id="countrySelect" style="width:200px">
+            <option value="Ind">1</option>
+            <option value="Aus">2</option>
+            <option value="NZ">3</option>
+        </select>*@  
+
+        @Html.DropDownList("SeTime", new List<SelectListItem>
+    {
+        new SelectListItem{ Text="1 Min", Value = "60" },
+        new SelectListItem{ Text="2 Min", Value = "120" },
+        new SelectListItem{ Text="3 Min", Value = "180" },
+    }, "Select Time",new { @Id= "countrySelect"})
+
+    </div>
+@*<script>
+
+    $(document).ready(function () {
+
+        $("#countrySelect").change(function () {
+
+            $.ajax({
+                url: '/Home/GetCountries',
+                type: 'POST',
+                data: { RawMaterial: $('#countrySelect').val() },
+                success: function (res) {
+                    $('#lblPrefix').html(res);
+                },
+                error: function (error) { }
+            });
+
+        });
+    });
+
+</script>*@
+
+    <script type="text/javascript">
+        $(function () {
+            var userInterfaceGroups;//undefined at first
+            $("#countrySelect").change(function (ev) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/PostTime",
+                    data: { 'selectedtTime': select },
+                    dataType: "json",
+                    success: function (response) {
+                    },
+                    error: function (Result) {
+                        alert("Error");
+                    }
+                });
+
+            })
+        })
+    </script>
+
+</body>
+</html>
